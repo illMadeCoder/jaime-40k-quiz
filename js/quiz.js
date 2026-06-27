@@ -4,10 +4,6 @@
    Depends on globals from data.js: JAIME, FACTIONS, FACTION_BY_KEY, QUESTIONS, BLOTS
    ===================================================================== */
 
-// Honorary title used in the photo caption per faction.
-const TITLES = {
-  orks: 'Warboss', sisters: 'Canoness', drukhari: 'Archon', harlequins: 'Troupe Master'
-};
 // Tie-break priority (earlier = wins ties).
 const PRIORITY = ['orks', 'harlequins', 'sisters', 'drukhari'];
 
@@ -375,27 +371,7 @@ function topThree() {
   const total = Object.values(state.scores).reduce((a, b) => a + b, 0) || 1;
   return Object.entries(state.scores)
     .sort((a, b) => b[1] - a[1])
-    .slice(0, 3)
     .map(([key, val]) => ({ f: FACTION_BY_KEY[key], pct: Math.round((val / total) * 100) }));
-}
-
-function photoBlock(f) {
-  const title = TITLES[f.key] || 'the Chosen';
-  // Auto-load assets/photos/<key>.jpg (or an explicit f.photo); fall back to the
-  // placeholder if the file isn't there — so you can just DROP a named photo in.
-  const src = f.photo || `assets/photos/${f.key}.jpg`;
-  const cap = f.photoStyle === 'troll'
-    ? `⚠ BEHOLD — ${JAIME.name.toUpperCase()}, ${title.toUpperCase()} ⚠`
-    : `${JAIME.name}, ${title}`;
-  return `<figure class="photo ${f.photoStyle}">
-      <img src="${src}" alt="${JAIME.name}" class="photo-img"
-           onerror="this.style.display='none';var b=document.getElementById('ph-${f.key}');if(b)b.style.display='flex';">
-      <div id="ph-${f.key}" class="ph-box" style="display:none">
-        <span class="ph-emblem">${f.emblem}</span>
-        <span class="ph-msg">PASTE ${JAIME.name.toUpperCase()} HERE<br><code>assets/photos/${f.key}.jpg</code></span>
-      </div>
-      <figcaption>${cap}</figcaption>
-    </figure>`;
 }
 
 function scoreboard() {
@@ -416,7 +392,9 @@ function renderResult(f) {
     <div class="result-verdict">the Emperor (and some 2am introspection) have spoken.<br>YOUR ARMY IS…</div>
     <h2 class="result-name">${f.name}</h2>
     <div class="result-tagline">★ ${f.tagline} ★</div>
-    ${photoBlock(f)}
+    <a href="${f.productUrl}" target="_blank" rel="noopener" class="box-link">
+      <img class="result-box-img" src="${f.boxImg}" alt="${f.boxName}"
+           onerror="this.closest('.box-link').classList.add('noimg');this.remove();"></a>
     <marquee class="result-marq" scrollamount="6">${(f.tagline + ' ❖ ').repeat(4)}</marquee>
     <section class="rsec"><h3>WHO ARE THEY?</h3><p>${f.who}</p></section>
     <section class="rsec"><h3>WHY YOU??</h3><p>${f.why}</p></section>
@@ -425,37 +403,17 @@ function renderResult(f) {
     <section class="rsec"><h3>WHAT THEY LOOK LIKE</h3><p>${f.look}</p>
       <a class="btn88 see" href="${f.seeUrl}" target="_blank" rel="noopener">★ MORE PHOTOS ★</a></section>
     <section class="rsec"><h3>YOUR FIRST BOX</h3>
-      <a href="${f.productUrl}" target="_blank" rel="noopener" class="box-link">
-        <img class="result-box-img" src="${f.boxImg}" alt="${f.boxName}"
-             onerror="this.closest('.box-link').classList.add('noimg');this.remove();"></a>
       <p>${f.firstBox}</p>
       <a class="btn88 buy" href="${f.productUrl}" target="_blank" rel="noopener">⚬ FIND THE BOX ▸ IN STOCK ⚬</a></section>
     ${scoreboard()}
     <div class="result-actions">
       <button id="btn-retake" class="bigbtn">↺ TAKE IT AGAIN</button>
-      <button id="btn-share" class="bigbtn">✉ SHARE THIS</button>
     </div>
     <div class="webring">[ <a href="#" onclick="return false">« prev</a> | THE GRIMDARK WEBRING | <a href="#" onclick="return false">next »</a> ]<br>
       <span class="ucfx">🚧 this site is eternally under construction 🚧</span></div>
   `;
   $('btn-retake').addEventListener('click', () => showScreen('intro'));
-  $('btn-share').addEventListener('click', shareResult);
   showScreen('result');
-}
-
-function shareResult() {
-  const url = location.href;
-  const text = `I took ${JAIME.name}'s cursed 40k quiz. Find your army:`;
-  if (navigator.share) {
-    navigator.share({ title: 'WHICH GRIMDARK ARE YOU??', text, url }).catch(() => {});
-  } else if (navigator.clipboard) {
-    navigator.clipboard.writeText(url).then(
-      () => alert('Link copied!! paste it 2 ur friendz ~*~'),
-      () => prompt('Copy this link:', url)
-    );
-  } else {
-    prompt('Copy this link:', url);
-  }
 }
 
 /* ---------- SAMPLE GALLERY (intro: the 4 possible outcomes) ---------- */

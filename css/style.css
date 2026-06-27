@@ -134,7 +134,7 @@ a, label, button, summary, .bigbtn, .btn88, .musicbtn, .opt-row, .sample, [oncli
 .sample-name{font-family:var(--font-head); color:var(--c,var(--blood)); font-size:1.4rem; letter-spacing:1px; line-height:1.1;}
 .sample-tag{font-size:.92rem; color:var(--bone);}
 .sample-box{font-family:var(--font-mono); font-size:.72rem; color:var(--gold); letter-spacing:.3px;}
-.result-box-img{display:block; width:100%; max-width:260px; margin:0 auto 8px; border:4px ridge var(--gunmetal);}
+.result-box-img{display:block; width:100%; max-width:300px; margin:16px auto 8px; border:4px ridge var(--gunmetal);}
 .box-link.noimg{display:none;}
 
 /* ---------- PERIOD 3D BUTTONS --------------------------------------- */
