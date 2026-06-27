@@ -458,10 +458,6 @@ function renderResult(f) {
       <img class="result-box-img" src="${f.boxImg}" alt="${f.boxName}"
            onerror="this.closest('.box-link').classList.add('noimg');this.remove();"></a>
     <marquee class="result-marq" scrollamount="6">${(f.tagline + ' ❖ ').repeat(4)}</marquee>
-    <section class="rsec"><h3>WHO ARE THEY?</h3><p>${f.who}</p></section>
-    <section class="rsec"><h3>WHY YOU??</h3><p>${f.why}</p></section>
-    <section class="rsec grimbox"><h3>☠ the grimdark bit ☠</h3><p>${f.grimdark}</p></section>
-    <p class="roast">…also: <i>${f.roast}</i></p>
     <section class="rsec"><h3>WHAT THEY LOOK LIKE</h3><p>${f.look}</p>
       <a class="btn88 see" href="${f.seeUrl}" target="_blank" rel="noopener">★ MORE PHOTOS ★</a></section>
     <section class="rsec"><h3>YOUR FIRST BOX</h3>
