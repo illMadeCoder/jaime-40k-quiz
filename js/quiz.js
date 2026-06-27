@@ -401,7 +401,9 @@ function answerDossier() {
   return `<section class="rsec dossier"><h3>YOUR FULL DOSSIER</h3>${rows}</section>`;
 }
 
-// Compose a plain-text mailto with the complete result, pre-addressed to the webmaster.
+// Compose the complete result and hand it off to email, pre-addressed to the webmaster.
+// Opens Gmail's web compose (works in any browser with no OS mail client configured);
+// falls back to copying the text if the popup is blocked.
 function emailResults(f) {
   const to = 'illmadecoder@gmail.com';
   const subject = `Jaime's Grimdark Result: ${f.name}`;
@@ -424,7 +426,22 @@ FULL DOSSIER (every answer):
 ${answers}
 
 — sent from the Grimdark Birthday Quiz`;
-  location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+  const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}`
+    + `&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const win = window.open(gmail, '_blank');
+  if (win) return;                       // Gmail compose opened in a new tab
+
+  // Popup blocked / no window — copy everything so she can paste it anywhere.
+  const full = `To: ${to}\nSubject: ${subject}\n\n${body}`;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(full).then(
+      () => alert(`Couldn't open Gmail automatically — your results are COPIED.\nPaste them into an email to ${to}.`),
+      () => prompt('Copy your results and email them to ' + to + ':', full)
+    );
+  } else {
+    prompt('Copy your results and email them to ' + to + ':', full);
+  }
 }
 
 function renderResult(f) {
