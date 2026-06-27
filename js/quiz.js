@@ -382,6 +382,51 @@ function scoreboard() {
   return `<div class="scoreboard"><div class="sb-title">the dice of fate read:</div>${rows}</div>`;
 }
 
+// Short question title (kicker before the ✷ divider), e.g. "THE WARP".
+function qTitle(Q, qi) {
+  return (Q.kicker || `QUESTION ${qi + 1}`).split('✷')[0].trim();
+}
+
+// Per-question breakdown: which faction each answer leaned toward.
+function answerDossier() {
+  const rows = QUESTIONS.map((Q, qi) => {
+    const sel = state.selections[qi];
+    if (!sel || !sel.w) return '';
+    const f = FACTION_BY_KEY[primaryFaction(sel.w)];
+    return `<div class="dossier-row">
+        <span class="dossier-q">${qi + 1}. ${qTitle(Q, qi)}</span>
+        <span class="dossier-a" style="color:${f.accent}">${f.emblem} ${f.name.replace(/^THE /, '')}</span>
+      </div>`;
+  }).join('');
+  return `<section class="rsec dossier"><h3>YOUR FULL DOSSIER</h3>${rows}</section>`;
+}
+
+// Compose a plain-text mailto with the complete result, pre-addressed to the webmaster.
+function emailResults(f) {
+  const to = 'illmadecoder@gmail.com';
+  const subject = `Jaime's Grimdark Result: ${f.name}`;
+  const scores = topThree().map(({ f, pct }) => `  ${f.name} — ${pct}%`).join('\n');
+  const answers = QUESTIONS.map((Q, qi) => {
+    const sel = state.selections[qi];
+    if (!sel || !sel.w) return '';
+    return `  ${qi + 1}. ${qTitle(Q, qi)} -> ${FACTION_BY_KEY[primaryFaction(sel.w)].name}`;
+  }).filter(Boolean).join('\n');
+  const body =
+`JAIME'S GRIMDARK BIRTHDAY QUIZ — RESULTS
+
+WINNING ARMY: ${f.name}
+${f.tagline}
+
+THE DICE OF FATE READ:
+${scores}
+
+FULL DOSSIER (every answer):
+${answers}
+
+— sent from the Grimdark Birthday Quiz`;
+  location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
 function renderResult(f) {
   const r = $('screen-result');
   r.style.setProperty('--accent', f.accent);
@@ -406,12 +451,15 @@ function renderResult(f) {
       <p>${f.firstBox}</p>
       <a class="btn88 buy" href="${f.productUrl}" target="_blank" rel="noopener">⚬ FIND THE BOX ▸ IN STOCK ⚬</a></section>
     ${scoreboard()}
+    ${answerDossier()}
     <div class="result-actions">
+      <button id="btn-email" class="bigbtn">✉ EMAIL THESE RESULTS</button>
       <button id="btn-retake" class="bigbtn">↺ TAKE IT AGAIN</button>
     </div>
     <div class="webring">[ <a href="#" onclick="return false">« prev</a> | THE GRIMDARK WEBRING | <a href="#" onclick="return false">next »</a> ]<br>
       <span class="ucfx">🚧 this site is eternally under construction 🚧</span></div>
   `;
+  $('btn-email').addEventListener('click', () => emailResults(f));
   $('btn-retake').addEventListener('click', () => showScreen('intro'));
   showScreen('result');
 }

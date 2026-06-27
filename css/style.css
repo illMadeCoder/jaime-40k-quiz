@@ -281,6 +281,13 @@ a, label, button, summary, .bigbtn, .btn88, .musicbtn, .opt-row, .sample, [oncli
 .sb-bar span{display:block; height:100%; background:var(--accent);}
 .sb-pct{flex:none; color:var(--accent);}
 
+/* full dossier (every answer + the faction it leaned) */
+.dossier{font-family:var(--font-mono); font-size:.78rem;}
+.dossier-row{display:flex; align-items:center; justify-content:space-between; gap:8px;
+  padding:3px 0; border-bottom:1px dotted var(--gunmetal);}
+.dossier-q{flex:1; color:var(--bone); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.dossier-a{flex:none; font-family:var(--font-loud); letter-spacing:.04em; font-size:.7rem;}
+
 .result-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;}
 .result-actions .bigbtn{flex:1; font-size:1.05rem; margin:0;}
 .webring{font-family:var(--font-mono); font-size:.75rem; color:var(--bone-dim); text-align:center; margin-top:14px;}

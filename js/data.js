@@ -253,7 +253,16 @@ const QUESTIONS = [
     q: `Something is coming. Click when you see it.`,
     options: [] },
 
-  /* 17 — PSYCH (Dark Triad: Narcissism) */
+  /* 17 — 40K PICK */
+  { type: 'classic', kicker: 'YOUR SHIP ✷ pick your ride', q: `You have to cross the galaxy. Four ships sit in the dock. Which gangway do you walk up?`,
+    options: [
+      { label: `A Kroozer the size of a small moon, every spare inch welded with more guns than it can aim. Painted red, because red ones go fasta. Held together by scrap, spite, and a crew that is genuinely thrilled to be aboard.`, w: { orks: 2 } },
+      { label: `A cathedral that happens to fly. Stained glass, vaulted halls, a choir somewhere below decks that never quite stops. A golden aquila on the prow the size of a house. It does not sneak. It arrives.`, w: { sisters: 2 } },
+      { label: `Something long and black and silent that you never once heard approach. No lights, no markings. It slips out of a tear in space, takes what it came for, and is gone before the alarm finishes sounding.`, w: { drukhari: 2 } },
+      { label: `Not really a ship. A mirror-bright craft that rides the Webway itself, the secret roads between the stars. It's here, a curtain drops, and it was never here at all. More stage than vessel.`, w: { harlequins: 2 } }
+    ] },
+
+  /* 18 — PSYCH (Dark Triad: Narcissism) */
   { type: 'classic', kicker: 'LEGACY ✷ be specific', q: `You want to be remembered as:`,
     options: [
       { label: `The biggest. The loudest. The one everyone points at when they explain it.`, w: { orks: 2 } },
@@ -262,7 +271,7 @@ const QUESTIONS = [
       { label: `Impossible to forget. Still there in the story they tell after you're gone.`, w: { harlequins: 2 } }
     ] },
 
-  /* 18 — 40K LORE */
+  /* 19 — 40K LORE */
   { type: 'classic', kicker: 'WARP THEOLOGY ✷ there are no wrong answers (there are wrong answers)',
     q: `Four gods rule the Warp. One of them is your type. Which?`,
     options: [
@@ -272,7 +281,7 @@ const QUESTIONS = [
       { img: 'assets/lore/nurgle.png',   label: `NURGLE. Plague Father. God of disease, rot, and somehow joy. He loves all his children without condition, even as they fall apart. The warmest god in a cold galaxy. He also wants you to have a small intestinal situation. Both things are true.`, w: { sisters: 2 } }
     ] },
 
-  /* 19 — PSYCH (Attachment) */
+  /* 20 — PSYCH (Attachment) */
   { type: 'classic', kicker: 'PSYCHOLOGICAL PROFILE ✷ no judgment', q: `The others have gone. You're the only one in the room. How long before that's a problem?`,
     options: [
       { label: `Immediately. You're already looking for the door.`, w: { orks: 2 } },
@@ -281,7 +290,7 @@ const QUESTIONS = [
       { label: `You prefer the troupe. But you were the one who built in the exit. You know where it is.`, w: { harlequins: 2 } }
     ] },
 
-  /* 20 — 40K LORE */
+  /* 21 — 40K LORE */
   { type: 'classic', kicker: 'THE GOD-EMPEROR ✷ he is complicated',
     heroImg: 'assets/lore/emperor.jpg',
     q: `The Emperor of Mankind has sat on the Golden Throne for ten thousand years. Technically alive. Technically a god. Sustained by ten thousand souls a day. Possibly the most important being in the galaxy. Definitely a lot. How do you feel about him?`,
@@ -292,7 +301,7 @@ const QUESTIONS = [
       { label: `He walked the stars before your civilisation had language. He made choices that broke worlds and he's still making them from that throne, ten thousand years on. The story isn't finished. We're watching.`, w: { harlequins: 2 } }
     ] },
 
-  /* 21 — CLASSIC */
+  /* 22 — CLASSIC */
   { type: 'classic', kicker: `LAST ONE ✷ make it count`, q: `A remembrancer is carving your epitaph. One line. What goes on the stone?`,
     options: [
       { label: `"She showed up, she built the thing, she was the loudest person in the room."`, w: { orks: 2 } },
