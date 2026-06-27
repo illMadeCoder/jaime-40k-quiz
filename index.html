@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A cursed personality quiz that picks ur Warhammer 40,000 army. Best viewed in Netscape Navigator 4.0 @ 800x600.">
+<meta name="author" content="The Webmaster (who loves u, Jaime)">
+<meta name="generator" content="Notepad & raw nerve">
+<title>★·.·´¯`·.·★ WHICH GRIMDARK ARE YOU?? ★·.·´¯`·.·★</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ctext y='14' font-size='14'%3E%E2%98%A0%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@900&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===== TOP MARQUEE BANNER ===== -->
+<div class="topbar">
+  <marquee scrollamount="7" behavior="scroll">
+    ✠ IN THE GRIM DARKNESS OF THE FAR FUTURE THERE IS ONLY WAR ✠ a name-day offering for JAIME ✠ THE EMPEROR PROTECTS ✠ so does thy friend ✠&nbsp;&nbsp;&nbsp;
+  </marquee>
+</div>
+
+<div class="stars"></div>
+<div class="stars stars2"></div>
+
+<main class="frame">
+
+  <!-- ===================== INTRO ===================== -->
+  <section id="screen-intro" class="screen active">
+    <div class="newflag blink">+++ 50 YRS LOYAL SERVICE +++</div>
+    <h1 class="bigtitle">
+      <span class="bt-huge">Jaime's</span>
+      <span class="bt-big">Grimdark</span>
+      <span class="bt-small">Birthday Quiz!</span>
+    </h1>
+    <p class="subtitle">Take the quiz and receive your <b>Warhammer 40,000</b> army!</p>
+
+    <div class="hr-glitter">✠ ☠ ✠ ☠ ✠ ☠ ✠ ☠ ✠</div>
+
+    <p class="fates-label">▼ YOUR FOUR POSSIBLE FATES ▼</p>
+    <div id="sample-gallery" class="sample-gallery"><!-- built by quiz.js --></div>
+
+    <button id="btn-start" class="bigbtn startbtn">✦ ENTER THE GRIMDARK ✦</button>
+
+    <p class="tiny disclaimer">Warhammer 40,000 is © Games Workshop. This is a non-commercial
+      birthday valentine made of original art + bad jokes. All model pics open on official/search pages.</p>
+  </section>
+
+  <!-- ===================== QUIZ (one long scroll) ===================== -->
+  <section id="screen-quiz" class="screen">
+    <div class="quiz-top">
+      <h2 class="quiz-h2">✠ THE INTAKE RITES ✠</h2>
+      <p class="tiny">answer all <b id="q-total">12</b> below, then smash the button.<br>
+        there are no wrong answers — only revealing ones.</p>
+    </div>
+    <div class="quiz-hud sticky">
+      <span id="q-progress">0 / 12 answered</span>
+      <span id="sanity" class="sanity">SAN ▓▓▓▓▓▓▓▓▓▓</span>
+    </div>
+    <form id="quiz-form" onsubmit="return false;">
+      <div id="q-list"><!-- all questions injected here by quiz.js --></div>
+      <button type="button" id="btn-submit" class="bigbtn submitbtn">★ GET MY RESULT ★</button>
+    </form>
+  </section>
+
+  <!-- ===================== RESULT ===================== -->
+  <section id="screen-result" class="screen">
+    <div id="result-card"></div>
+  </section>
+
+</main>
+
+<!-- ===== FOOTER JANK ===== -->
+<footer class="footer">
+  <div class="badges">
+    <span class="badge88">Netscape&nbsp;NOW!</span>
+    <span class="badge88">MADE&nbsp;ON&nbsp;A&nbsp;MAC</span>
+    <span class="badge88">Y2K&nbsp;READY</span>
+    <span class="badge88">HTML&nbsp;3.2</span>
+  </div>
+  <button id="btn-music" class="musicbtn">▶ PLAY DOOM MIDI</button>
+  <div id="counter" class="counter">You are soul #0001337 claimed by the Warp</div>
+  <div class="footlinks">
+    <a href="#" onclick="alert('thx 4 signing!! the spirits have recorded ur mark ✶'); return false;">✎ sign my guestbook</a> ·
+    <a href="mailto:illmadecoder@gmail.com?subject=ur%20grimdark%20website%20rules">✉ email the webmaster</a>
+  </div>
+  <div class="copyr">© M998.M3 · a Webring of One · hand-coded with ♥ and dread</div>
+</footer>
+
+<!-- ===== WARP LOADER OVERLAY ===== -->
+<div id="warp-loader" class="warp-loader">
+  <div class="loader-inner">
+    <div class="loader-skull blink">☠</div>
+    <div id="loader-text" class="loader-text">CONSULTING THE EMPEROR’S TAROT...</div>
+    <div class="loader-track"><div id="loader-bar" class="loader-bar"></div></div>
+    <div class="tiny">do NOT close this window. the warp is fragile.</div>
+  </div>
+</div>
+
+<!-- ===== FACTION FLASH MODAL ===== -->
+<div id="faction-flash" class="faction-flash">
+  <div class="faction-flash-inner">
+    <img id="ff-img" class="ff-img" src="" alt="">
+    <div id="ff-emblem" class="ff-emblem"></div>
+    <div id="ff-name" class="ff-name"></div>
+    <p id="ff-text" class="ff-text"></p>
+    <button id="ff-close" class="bigbtn">✦ NOTED ✦</button>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/quiz.js"></script>
+<script src="js/jank.js"></script>
+</body>
+</html>
